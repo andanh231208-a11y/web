@@ -585,47 +585,65 @@ body {
 /* =======================
    NEWS POPUP - MOBILE
 ======================= */
+        
 @media (max-width:768px){
+
     #newsOverlay{
-        padding:16px;
+        padding:12px;
     }
 
     #newsPanel{
-        width:92vw;
-        max-width:420px;
-        max-height:78vh;
-        border-radius:14px;
+        width:95vw;
+        max-width:700px;
+        max-height:80vh;
     }
 
-    #newsPanel h2{
-        padding:18px;
-        font-size:22px;
+    #newsList{
+        padding:14px;
     }
 
     .news-card{
-        grid-template-columns:80px 1fr;
-        gap:14px;
-        padding:16px;
+        display:grid;
+        grid-template-columns:70px 1fr 95px;
+        gap:12px;
+        align-items:center;
+        padding:12px;
     }
 
     .news-card img{
-        width:80px;
+        width:70px;
+        padding:3px;
     }
 
     .news-info h3{
-        font-size:17px;
+        font-size:16px;
+        margin-bottom:4px;
     }
 
     .news-info p{
-        font-size:13px;
-        line-height:1.7;
+        font-size:12px;
+        line-height:1.5;
+        margin-bottom:8px;
     }
 
+    .news-tags{
+        gap:5px;
+    }
+
+    .news-tags span{
+        font-size:10px;
+        padding:4px 8px;
+    }
+    
     .news-btn{
-        grid-column:1 / -1;
-        width:100%;
-        margin-top:8px;
-        text-align:center;
+        width:90px;
+        min-width:90px;
+        height:38px;
+        font-size:12px;
+        margin:0;
+        justify-self:end;
+        align-self:center;
+        grid-column:auto;
     }
 }
 
