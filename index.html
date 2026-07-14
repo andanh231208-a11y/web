@@ -1573,84 +1573,81 @@ function renderPagination(totalPages){
     createButton("»",totalPages,currentPage===totalPages);
 }
 
-const newest = [...cards]
-    .sort((a,b)=>
-        Number(b.dataset.news)-Number(a.dataset.news)
-    )
-    .slice(0,3);const newsList=document.getElementById("newsList");
+    const newest = [...cards]
+    .sort((a, b) => Number(b.dataset.news) - Number(a.dataset.news))
+    .slice(0, 3);
 
-if(newsList){
+const newsList = document.getElementById("newsList");
 
-newest.forEach(card=>{
+if (newsList) {
 
-    const name=card.querySelector("h2")?.innerText||"";
-    const tag=card.querySelector(".tagline")?.innerText||"";
-    const img=card.querySelector("img")?.src||"";
-    const id=card.dataset.id;
+    newest.forEach(card => {
 
-    const tags=[...card.querySelectorAll(".tags span")]
-        .slice(0,4)
-        .map(x=>x.outerHTML)
-        .join("");
+        const name = card.querySelector("h2")?.innerText || "";
+        const tag = card.querySelector(".tagline")?.innerText || "";
+        const img = card.querySelector("img")?.src || "";
 
-    newsList.innerHTML+=`
-    <div class="news-card">
-        <img src="${img}">
-        <div class="news-info">
-            <h3>${name}</h3>
-            <p>${tag}</p>
-            <div class="news-tags">${tags}</div>
-        </div>
+        const tags = [...card.querySelectorAll(".tags span")]
+            .slice(0,4)
+            .map(tag => tag.outerHTML)
+            .join("");
 
-        <a class="news-btn" data-id="${id}">
-            Gọi món!
-        </a>
+        const index = cards.indexOf(card);
 
-    </div>`;
-});
+        newsList.innerHTML += `
+            <div class="news-card">
+                <img src="${img}">
+                <div class="news-info">
+                    <h3>${name}</h3>
+                    <p>${tag}</p>
+                    <div class="news-tags">${tags}</div>
+                </div>
 
-document.querySelectorAll(".news-btn").forEach(btn=>{
+                <a class="news-btn" data-index="${index}">
+                    Gọi món!
+                </a>
+            </div>
+        `;
+    });
 
-    btn.onclick=()=>{
+    document.querySelectorAll(".news-btn").forEach(btn => {
 
-        newsOverlay.style.display="none";
+        btn.onclick = () => {
 
-        const id=btn.dataset.id;
+            const index = Number(btn.dataset.index);
 
-        const target=document.querySelector(
-            `.character-card[data-id="${id}"]`
-        );
+            currentPage = Math.floor(index / cardsPerPage) + 1;
 
-        if(!target) return;
+            renderCards();
 
-        // mở đúng trang
-        const index=cards.indexOf(target);
+            if(newsOverlay){
+                newsOverlay.style.display = "none";
+            }
 
-        currentPage=Math.floor(index/cardsPerPage)+1;
+            setTimeout(() => {
 
-        renderCards();
+                cards[index].scrollIntoView({
+                    behavior:"smooth",
+                    block:"center"
+                });
 
-        setTimeout(()=>{
-            target.scrollIntoView({
-                behavior:"smooth",
-                block:"center"
-            });
-        },80);
+            },100);
 
-    };
+        };
 
-});
+    });
 
-const newsOverlay=document.getElementById("newsOverlay");
+}
+    const newsOverlay = document.getElementById("newsOverlay");
 
 if(newsOverlay){
-    newsOverlay.onclick=e=>{
-        if(e.target===newsOverlay){
-            newsOverlay.style.display="none";
+    newsOverlay.onclick = e => {
+        if(e.target === newsOverlay){
+            newsOverlay.style.display = "none";
         }
     };
 }
-
+    
 const count=document.getElementById("characterCount");
 
 if(count){
@@ -1676,6 +1673,9 @@ function filterCategory(category,button){
     renderCards();
 }
 
+const music = document.getElementById("bgMusic");
+const musicPlayer = document.querySelector(".music-player");
+
 window.addEventListener("load", () => {
     music.play()
         .then(() => {
@@ -1685,9 +1685,6 @@ window.addEventListener("load", () => {
             console.log("Autoplay bị trình duyệt chặn.");
         });
 });
-
-const music=document.getElementById("bgMusic");
-const musicPlayer=document.querySelector(".music-player");
 
 function toggleMusic(){
     if(music.paused){
