@@ -597,24 +597,28 @@ body {
 #newsPanel{
     width:min(760px,92vw);
     max-width:760px;
-    max-height:80vh;
+    max-height:82vh;
 }
 
 #newsList{
-    padding:18px;
-    gap:16px;
+    padding:22px;
+    gap:18px;
 }
 
 .news-card{
     display:grid;
-    grid-template-columns:90px 1fr auto;
-    gap:18px;
+    grid-template-columns:100px 1fr auto;
+    gap:20px;
     align-items:center;
-    padding:16px;
+    padding:18px;
 }
 
 .news-card img{
-    width:90px;
+    width:100px;
+}
+
+.news-info{
+    margin-left:8px;
 }
 
 .news-info h3{
@@ -623,21 +627,20 @@ body {
 
 .news-info p{
     font-size:14px;
-    margin-bottom:10px;
+    line-height:1.7;
 }
 
 .news-tags span{
+    padding:6px 12px;
     font-size:12px;
-    padding:5px 12px;
 }
 
 .news-btn{
     width:120px;
-    height:38px;
+    height:40px;
     font-size:13px;
-    border-radius:10px;
 }
-
+        
 /* =======================
    NEWS POPUP - MOBILE
 ======================= */
@@ -726,17 +729,6 @@ body {
         bottom:8px;
         font-size:10px;
     }
-}
-
-#newsPanel{
-    width:100%;
-    max-width:380px;
-    max-height:66vh;
-}
-
-#newsList{
-    padding:10px;
-    gap:10px;
 }
 
 /* =======================
@@ -1537,7 +1529,7 @@ user-select:none;
 <section class="character-card" id="card16" data-news="16">
 
     <div class="left">
-        <h2>Kỷ Tồn </h2>
+        <h2>Kỷ Tồn Hy</h2>
         <p class="tagline">
             北京的MVP，深圳的忠犬。
         </p>
@@ -1546,7 +1538,7 @@ user-select:none;
             <span>#Hiện đại</span>
             <span>#Hồng hài nhi</span>
             <span>#Yêu qua mạng</span>
-            <span>#Cún </span>
+            <span>#Cún con</span>
         </div>
 
         <div class="button-group">
@@ -1557,7 +1549,7 @@ user-select:none;
     </div>
 
     <div class="right">
-        <img src="cnn.png" alt="Ảnh Character" loading="lazy">
+        <img src="kth.png" alt="Ảnh Character" loading="lazy">
     </div>
 
 </section>
